@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.32804.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{DCC91414-FED0-4110-A2B3-0AE6DF313542}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{53EABDB3-FA68-41A3-B4D2-83C8C316444F}"
+	ProjectSection(SolutionItems) = preProject
+		src\A003.razor.cs = src\A003.razor.cs
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFrm.Management.Razor.A003(net6.0)", "MetaFrm.Management.Razor.A003(net6.0)\MetaFrm.Management.Razor.A003(net6.0).csproj", "{6CB75DDD-3DDD-432C-B3A2-79295FF9AFC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{88C738E1-700D-4FA8-9DE3-696D7ECB2F80}"
+	ProjectSection(SolutionItems) = preProject
+		src\Models\CommonClassModel.cs = src\Models\CommonClassModel.cs
+		src\Models\SearchModel.cs = src\Models\SearchModel.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModels", "ViewModels", "{3BD27805-5034-443D-96FC-12451CCEE4FA}"
+	ProjectSection(SolutionItems) = preProject
+		src\ViewModels\A003ViewModel.cs = src\ViewModels\A003ViewModel.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{57DC5EEF-6501-420B-B63F-FBB8B5B4505D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{A295FB4E-EEA9-423A-A631-F342B006B602}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CB75DDD-3DDD-432C-B3A2-79295FF9AFC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CB75DDD-3DDD-432C-B3A2-79295FF9AFC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CB75DDD-3DDD-432C-B3A2-79295FF9AFC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CB75DDD-3DDD-432C-B3A2-79295FF9AFC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{88C738E1-700D-4FA8-9DE3-696D7ECB2F80} = {53EABDB3-FA68-41A3-B4D2-83C8C316444F}
+		{3BD27805-5034-443D-96FC-12451CCEE4FA} = {53EABDB3-FA68-41A3-B4D2-83C8C316444F}
+		{A295FB4E-EEA9-423A-A631-F342B006B602} = {57DC5EEF-6501-420B-B63F-FBB8B5B4505D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DEBD6B47-0545-4BEF-9E23-0D6B4A800BDC}
+	EndGlobalSection
+EndGlobal

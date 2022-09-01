@@ -1,0 +1,150 @@
+﻿@using MetaFrm.Control
+@using MetaFrm.Management.Razor.Models
+@using MetaFrm.Razor.Command
+@using MetaFrm.Razor.DataGrid
+@using MetaFrm.Razor.Dictionary
+@using MetaFrm.Razor.Field
+@using MetaFrm.Razor.Group
+@using MetaFrm.Razor.Search
+@using MetaFrm.Razor.Title
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
+@inherits BaseComponent
+
+<div>
+    <TitleControl Title="@this.GetAttribute("Description")"></TitleControl>
+
+    @if (this.GroupWindowStatus == GroupWindowStatus.Close)
+    {
+        <DataGridControl TItem="CommonClassModel" @ref="this.DataGridControl" Columns="this.ColumnDefinitions" DataItems="this.A003ViewModel.SelectResultModel" PagingEnabled="true"
+                     TableClass="table-hover"
+                     RowAdd="this.New"
+                     MovePage="this.Search"
+                     RowModify="this.RowModify">
+            <SearchInputControl>
+                <input type="text" class="form-control rounded-start" placeholder="Search" @bind-value="@this.A003ViewModel.SearchModel.SEARCH_TEXT" @onkeyup="@SearchKeydown" />
+            </SearchInputControl>
+            <SearchButtonControl>
+                <button class="btn btn-outline-primary btn-rounded-end" type="button" @onclick="(() => this.OnSearch())">
+                    <span class="oi oi-magnifying-glass" />
+                </button>
+            </SearchButtonControl>
+        </DataGridControl>
+    }
+    else
+    {
+        <GroupControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))"
+                  Close="this.Close" GroupWindowStatus="this.GroupWindowStatus">
+            <Control>
+                <EditForm class="container" Model="@this.SelectItem" OnValidSubmit="this.Save">
+                    <DataAnnotationsValidator />
+
+                    <FieldControl Label="Class ID" Value="this.SelectItem.CLASS_ID" CssClassDiv="pt-2 pb-1"></FieldControl>
+                    
+                    <div class="row py-2">
+                        <FieldControl Label="Class name" CssClassDiv="py-2 col-md-6">
+                            <Control>
+                                <InputText id="classname" class="form-control" placeholder="Class name" @bind-Value="this.SelectItem.CLASS_NAME" />
+                                <ValidationMessage For="@(()=>this.SelectItem.CLASS_NAME)" />
+                            </Control>
+                        </FieldControl>
+                        <FieldControl Label="Key name" CssClassDiv="py-2 col-md-6">
+                            <Control>
+                                <InputText id="keyname" class="form-control" placeholder="Key name" @bind-Value="this.SelectItem.KEY_VALUE" />
+                                <ValidationMessage For="@(()=>this.SelectItem.KEY_VALUE)" />
+                            </Control>
+                        </FieldControl>
+                    </div>
+                    <div class="row py-2">
+                        <FieldControl Label="Inactive" CssClassControl="row">
+                            <Control>
+                                <div class="py-1 col-md-3">
+                                    <InputDate id="inactivedate" class="form-control" placeholder="Inactive Date" Type="InputDateType.Date" @bind-Value="this.SelectItem.INACTIVE_DATE" @bind-Value:format="yyyy-MM-dd" />
+                                </div>
+                                <div class="py-1 col-md-3">
+                                    <InputDate id="inactivetime" class="form-control" placeholder="Inactive Time" Type="InputDateType.Time" @bind-Value="this.SelectItem.INACTIVE_DATE" @bind-Value:format="HH:mm" />
+                                </div>
+                                <ValidationMessage For="@(()=>this.SelectItem.INACTIVE_DATE)" />
+                            </Control>
+                        </FieldControl>
+                    </div>
+                    <GroupControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" HeaderNewString="Text value" HeaderEditString="Text" CssClassInnerContainer="p-2 bg-secondary" InnerContainer="true"
+                              Minimize="(() => {this.GroupWindowStatusText = GroupWindowStatus.Minimize; return;} )" Maximize="(() => {this.GroupWindowStatusText = GroupWindowStatus.Maximize; return;} )" GroupWindowStatus="this.GroupWindowStatusText">
+                         <Control>
+                            <div class="row">
+                                <FieldControl Label="Text name1" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname1" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE1)" /></Control></FieldControl>
+                                <FieldControl Label="Text name2" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname2" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE2)" /></Control></FieldControl>
+                            </div>
+                            <div class="row">
+                                <FieldControl Label="Text name3" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname3" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE3" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE3)" /></Control></FieldControl>
+                                <FieldControl Label="Text name4" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname4" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE4" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE4)" /></Control></FieldControl>
+                            </div>
+                            <div class="row">
+                                <FieldControl Label="Text name5" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname5" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE5)" /></Control></FieldControl>
+                                <FieldControl Label="Text name6" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname6" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE6" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE6)" /></Control></FieldControl>
+                            </div>
+                            <div class="row">
+                                <FieldControl Label="Text name7" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname7" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE7" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE7)" /></Control></FieldControl>
+                                <FieldControl Label="Text name8" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname8" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE8" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE8)" /></Control></FieldControl>
+                            </div>
+                            <div class="row">
+                                <FieldControl Label="Text name9" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname9" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE9" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE9)" /></Control></FieldControl>
+                                <FieldControl Label="Text name10" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname10" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE10" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE10)" /></Control></FieldControl>
+                            </div>
+                        </Control>
+                    </GroupControl>
+                    <GroupControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" HeaderNewString="Int value" HeaderEditString="Int value" CssClassInnerContainer="p-2 bg-secondary" InnerContainer="true"
+                              Minimize="(() => {this.GroupWindowStatusInt = GroupWindowStatus.Minimize; return;} )" Maximize="(() => {this.GroupWindowStatusInt = GroupWindowStatus.Maximize; return;} )" GroupWindowStatus="this.GroupWindowStatusInt">
+                         <Control>
+                            <div class="row">
+                                <FieldControl Label="Int name1" CssClassDiv="py-2 col-md-6"><Control><InputText id="intname1" class="form-control" placeholder="" @bind-Value="this.SelectItem.INT_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE1)" /></Control></FieldControl>
+                                <FieldControl Label="Int name2" CssClassDiv="py-2 col-md-6"><Control><InputText id="intname2" class="form-control" placeholder="" @bind-Value="this.SelectItem.INT_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE2)" /></Control></FieldControl>
+                            </div>
+                            <div class="row">
+                                <FieldControl Label="Int name3" CssClassDiv="py-2 col-md-6"><Control><InputText id="intname3" class="form-control" placeholder="" @bind-Value="this.SelectItem.INT_VALUE3" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE3)" /></Control></FieldControl>
+                                <FieldControl Label="Int name4" CssClassDiv="py-2 col-md-6"><Control><InputText id="intname4" class="form-control" placeholder="" @bind-Value="this.SelectItem.INT_VALUE4" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE4)" /></Control></FieldControl>
+                            </div>
+                            <div class="row">
+                                <FieldControl Label="Int name5" CssClassDiv="py-2 col-md-6"><Control><InputText id="intname5" class="form-control" placeholder="" @bind-Value="this.SelectItem.INT_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE5)" /></Control></FieldControl>
+                            </div>
+                        </Control>
+                    </GroupControl>
+                    <GroupControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" HeaderNewString="Number value" HeaderEditString="Number value" CssClassInnerContainer="p-2 bg-secondary" InnerContainer="true"
+                              Minimize="(() => {this.GroupWindowStatusNumber = GroupWindowStatus.Minimize; return;} )" Maximize="(() => {this.GroupWindowStatusNumber = GroupWindowStatus.Maximize; return;} )" GroupWindowStatus="this.GroupWindowStatusNumber">
+                         <Control>
+                            <div class="row">
+                                <FieldControl Label="Number name1" CssClassDiv="py-2 col-md-6"><Control><InputText id="numbername1" class="form-control" placeholder="" @bind-Value="this.SelectItem.NUMBER_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE1)" /></Control></FieldControl>
+                                <FieldControl Label="Number name2" CssClassDiv="py-2 col-md-6"><Control><InputText id="numbername2" class="form-control" placeholder="" @bind-Value="this.SelectItem.NUMBER_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE2)" /></Control></FieldControl>
+                            </div>
+                            <div class="row">
+                            <FieldControl Label="Number name3" CssClassDiv="py-2 col-md-6"><Control><InputText id="numbername3" class="form-control" placeholder="" @bind-Value="this.SelectItem.NUMBER_VALUE3" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE3)" /></Control></FieldControl>
+                            <FieldControl Label="Number name4" CssClassDiv="py-2 col-md-6"><Control><InputText id="numbername4" class="form-control" placeholder="" @bind-Value="this.SelectItem.NUMBER_VALUE4" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE4)" /></Control></FieldControl>
+                            </div>
+                            <div class="row">
+                            <FieldControl Label="Number name5" CssClassDiv="py-2 col-md-6"><Control><InputText id="numbername5" class="form-control" placeholder="" @bind-Value="this.SelectItem.NUMBER_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE5)" /></Control></FieldControl>
+                            </div>
+                        </Control>
+                    </GroupControl>
+                    <GroupControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" HeaderNewString="Datetime value" HeaderEditString="Datetime value" CssClassInnerContainer="p-2 bg-secondary" InnerContainer="true"
+                              Minimize="(() => {this.GroupWindowStatusDatetime = GroupWindowStatus.Minimize; return;} )" Maximize="(() => {this.GroupWindowStatusDatetime = GroupWindowStatus.Maximize;return;} )" GroupWindowStatus="this.GroupWindowStatusDatetime">
+                         <Control>
+                            <div class="row">
+                                <FieldControl Label="Datetime name1" CssClassDiv="py-2 col-md-6"><Control><InputText id="datetimename1" class="form-control" placeholder="" @bind-Value="this.SelectItem.DATETIME_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE1)" /></Control></FieldControl>
+                                <FieldControl Label="Datetime name2" CssClassDiv="py-2 col-md-6"><Control><InputText id="datetimename2" class="form-control" placeholder="" @bind-Value="this.SelectItem.DATETIME_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE2)" /></Control></FieldControl>
+                            </div>
+                            <div class="row">
+                            <FieldControl Label="Datetime name3" CssClassDiv="py-2 col-md-6"><Control><InputText id="datetimename3" class="form-control" placeholder="" @bind-Value="this.SelectItem.DATETIME_VALUE3" /><ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE3)" /></Control></FieldControl>
+                            <FieldControl Label="Datetime name4" CssClassDiv="py-2 col-md-6"><Control><InputText id="datetimename4" class="form-control" placeholder="" @bind-Value="this.SelectItem.DATETIME_VALUE4" /><ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE4)" /></Control></FieldControl>
+                            </div>
+                            <div class="row">
+                                <FieldControl Label="Datetime name5" CssClassDiv="py-2 col-md-6"><Control><InputText id="datetimename5" class="form-control" placeholder="" @bind-Value="this.SelectItem.DATETIME_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE5)" /></Control></FieldControl>
+                            </div>
+                        </Control>
+                    </GroupControl>
+
+                    <CommandControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" SaveIsSubmit="true" New="this.New" Copy="this.Copy" Delete="this.Delete" />
+                </EditForm>
+            </Control>
+        </GroupControl>
+    }
+</div>
