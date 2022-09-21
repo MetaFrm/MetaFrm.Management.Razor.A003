@@ -23,10 +23,10 @@ namespace MetaFrm.Management.Razor
 
         internal CommonClassModel SelectItem = new();
 
-        internal GroupWindowStatus GroupWindowStatusText = GroupWindowStatus.Maximize;
-        internal GroupWindowStatus GroupWindowStatusInt = GroupWindowStatus.Maximize;
-        internal GroupWindowStatus GroupWindowStatusNumber = GroupWindowStatus.Maximize;
-        internal GroupWindowStatus GroupWindowStatusDatetime = GroupWindowStatus.Maximize;
+        internal CardWindowStatus CardWindowStatusText = CardWindowStatus.Maximize;
+        internal CardWindowStatus CardWindowStatusInt = CardWindowStatus.Maximize;
+        internal CardWindowStatus CardWindowStatusNumber = CardWindowStatus.Maximize;
+        internal CardWindowStatus CardWindowStatusDatetime = CardWindowStatus.Maximize;
         #endregion
 
 

@@ -67,9 +67,9 @@
                     </Control>
                 </FieldControl>
             </div>
-            <GroupControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" HeaderNewString="Text value" HeaderEditString="Text" CssClassInnerContainer="p-2 bg-secondary" InnerContainer="true"
-                          Minimize="(() => {this.GroupWindowStatusText = GroupWindowStatus.Minimize; return;} )" Maximize="(() => {this.GroupWindowStatusText = GroupWindowStatus.Maximize; return;} )" GroupWindowStatus="this.GroupWindowStatusText">
-                <Control>
+            <CardControl CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "border-primary mb-2" : "mb-2")" HeaderText="Text value"
+                         Minimize="(() => {this.CardWindowStatusText = CardWindowStatus.Minimize; return;} )" Maximize="(() => {this.CardWindowStatusText = CardWindowStatus.Maximize; return;} )" CardWindowStatus="this.CardWindowStatusText">
+                <Text>
                     <div class="row">
                         <FieldControl Label="Text name1" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname1" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE1)" /></Control></FieldControl>
                         <FieldControl Label="Text name2" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname2" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE2)" /></Control></FieldControl>
@@ -90,11 +90,11 @@
                         <FieldControl Label="Text name9" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname9" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE9" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE9)" /></Control></FieldControl>
                         <FieldControl Label="Text name10" CssClassDiv="py-2 col-md-6"><Control><InputText id="textname10" class="form-control" placeholder="" @bind-Value="this.SelectItem.TEXT_VALUE10" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE10)" /></Control></FieldControl>
                     </div>
-                </Control>
-            </GroupControl>
-            <GroupControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" HeaderNewString="Int value" HeaderEditString="Int value" CssClassInnerContainer="p-2 bg-secondary" InnerContainer="true"
-                          Minimize="(() => {this.GroupWindowStatusInt = GroupWindowStatus.Minimize; return;} )" Maximize="(() => {this.GroupWindowStatusInt = GroupWindowStatus.Maximize; return;} )" GroupWindowStatus="this.GroupWindowStatusInt">
-                <Control>
+                </Text>
+            </CardControl>
+            <CardControl CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "border-primary mb-2" : "mb-2")" HeaderText="Int value"
+                         Minimize="(() => {this.CardWindowStatusInt = CardWindowStatus.Minimize; return;} )" Maximize="(() => {this.CardWindowStatusInt = CardWindowStatus.Maximize; return;} )" CardWindowStatus="this.CardWindowStatusInt">
+                <Text>
                     <div class="row">
                         <FieldControl Label="Int name1" CssClassDiv="py-2 col-md-6"><Control><InputText id="intname1" class="form-control" placeholder="" @bind-Value="this.SelectItem.INT_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE1)" /></Control></FieldControl>
                         <FieldControl Label="Int name2" CssClassDiv="py-2 col-md-6"><Control><InputText id="intname2" class="form-control" placeholder="" @bind-Value="this.SelectItem.INT_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE2)" /></Control></FieldControl>
@@ -106,11 +106,11 @@
                     <div class="row">
                         <FieldControl Label="Int name5" CssClassDiv="py-2 col-md-6"><Control><InputText id="intname5" class="form-control" placeholder="" @bind-Value="this.SelectItem.INT_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE5)" /></Control></FieldControl>
                     </div>
-                </Control>
-            </GroupControl>
-            <GroupControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" HeaderNewString="Number value" HeaderEditString="Number value" CssClassInnerContainer="p-2 bg-secondary" InnerContainer="true"
-                          Minimize="(() => {this.GroupWindowStatusNumber = GroupWindowStatus.Minimize; return;} )" Maximize="(() => {this.GroupWindowStatusNumber = GroupWindowStatus.Maximize; return;} )" GroupWindowStatus="this.GroupWindowStatusNumber">
-                <Control>
+                </Text>
+            </CardControl>
+            <CardControl CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "border-primary mb-2" : "mb-2")" HeaderText="Number value"
+                         Minimize="(() => {this.CardWindowStatusNumber = CardWindowStatus.Minimize; return;} )" Maximize="(() => {this.CardWindowStatusNumber = CardWindowStatus.Maximize; return;} )" CardWindowStatus="this.CardWindowStatusNumber">
+                <Text>
                     <div class="row">
                         <FieldControl Label="Number name1" CssClassDiv="py-2 col-md-6"><Control><InputText id="numbername1" class="form-control" placeholder="" @bind-Value="this.SelectItem.NUMBER_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE1)" /></Control></FieldControl>
                         <FieldControl Label="Number name2" CssClassDiv="py-2 col-md-6"><Control><InputText id="numbername2" class="form-control" placeholder="" @bind-Value="this.SelectItem.NUMBER_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE2)" /></Control></FieldControl>
@@ -122,11 +122,11 @@
                     <div class="row">
                         <FieldControl Label="Number name5" CssClassDiv="py-2 col-md-6"><Control><InputText id="numbername5" class="form-control" placeholder="" @bind-Value="this.SelectItem.NUMBER_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE5)" /></Control></FieldControl>
                     </div>
-                </Control>
-            </GroupControl>
-            <GroupControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" HeaderNewString="Datetime value" HeaderEditString="Datetime value" CssClassInnerContainer="p-2 bg-secondary" InnerContainer="true"
-                          Minimize="(() => {this.GroupWindowStatusDatetime = GroupWindowStatus.Minimize; return;} )" Maximize="(() => {this.GroupWindowStatusDatetime = GroupWindowStatus.Maximize;return;} )" GroupWindowStatus="this.GroupWindowStatusDatetime">
-                <Control>
+                </Text>
+            </CardControl>
+            <CardControl CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "border-primary mb-2" : "mb-2")" HeaderText="Datetime value"
+                         Minimize="(() => {this.CardWindowStatusDatetime = CardWindowStatus.Minimize; return;} )" Maximize="(() => {this.CardWindowStatusDatetime = CardWindowStatus.Maximize;return;} )" CardWindowStatus="this.CardWindowStatusDatetime">
+                <Text>
                     <div class="row">
                         <FieldControl Label="Datetime name1" CssClassDiv="py-2 col-md-6"><Control><InputText id="datetimename1" class="form-control" placeholder="" @bind-Value="this.SelectItem.DATETIME_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE1)" /></Control></FieldControl>
                         <FieldControl Label="Datetime name2" CssClassDiv="py-2 col-md-6"><Control><InputText id="datetimename2" class="form-control" placeholder="" @bind-Value="this.SelectItem.DATETIME_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE2)" /></Control></FieldControl>
@@ -138,8 +138,8 @@
                     <div class="row">
                         <FieldControl Label="Datetime name5" CssClassDiv="py-2 col-md-6"><Control><InputText id="datetimename5" class="form-control" placeholder="" @bind-Value="this.SelectItem.DATETIME_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE5)" /></Control></FieldControl>
                     </div>
-                </Control>
-            </GroupControl>
+                </Text>
+            </CardControl>
 
             <CommandControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" SaveIsSubmit="true" New="this.New" Copy="this.Copy" Delete="this.Delete" />
         </EditForm>
