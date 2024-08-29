@@ -17,7 +17,7 @@ namespace MetaFrm.Management.Razor.Models
         /// </summary>
         [Required]
         [MinLength(3)]
-        [Display(Name = "Class name")]
+        [Display(Name = "클래스명")]
         public string? CLASS_NAME { get; set; }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace MetaFrm.Management.Razor.Models
         /// </summary>
         [Required]
         [MinLength(3)]
-        [Display(Name = "Key value")]
+        [Display(Name = "키 이름")]
         public string? KEY_VALUE { get; set; }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace MetaFrm.Management.Razor.Models
         /// <summary>
         /// INACTIVE_DATE
         /// </summary>
-        [Display(Name = "Inactive date")]
+        [Display(Name = "비활성")]
         public DateTime? INACTIVE_DATE { get; set; } = DateTime.Now.AddYears(100);
     }
 }

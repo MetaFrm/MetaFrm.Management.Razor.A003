@@ -13,11 +13,11 @@
                  MovePage="this.Search"
                  RowModify="this.RowModify"
                  Columns="@(new ColumnDefinitions[] {
-                    new(DbType.Int, SortDirection.Normal, Alignment.Right, nameof(CommonClassModel.CLASS_ID), "Assembly ID", "d-none d-md-table-cell"),
-                    new(DbType.NVarChar, SortDirection.Ascending, Alignment.NotSet, nameof(CommonClassModel.CLASS_NAME), "Class name"),
-                    new(DbType.NVarChar, SortDirection.Normal, Alignment.NotSet, nameof(CommonClassModel.KEY_VALUE), "Key name")})">
+                    new(DbType.Int, SortDirection.Normal, Alignment.Right, nameof(CommonClassModel.CLASS_ID), "ID", "d-none d-md-table-cell"),
+                    new(DbType.NVarChar, SortDirection.Ascending, Alignment.NotSet, nameof(CommonClassModel.CLASS_NAME), "클래스명"),
+                    new(DbType.NVarChar, SortDirection.Normal, Alignment.NotSet, nameof(CommonClassModel.KEY_VALUE), "키 이름")})">
     <SearchInputControl>
-        <input type="text" class="form-control rounded-start" placeholder="Search" @bind-value="@this.A003ViewModel.SearchModel.SEARCH_TEXT" @onkeyup="@SearchKeydown" />
+        <input type="text" class="form-control rounded-start" placeholder="@Localization["검색"]" @bind-value="@this.A003ViewModel.SearchModel.SEARCH_TEXT" @onkeyup="@SearchKeydown" />
     </SearchInputControl>
     <SearchButtonControl>
         <button class="btn btn-outline-primary btn-rounded-end" type="submit" @onclick="(() => this.OnSearch())">
@@ -26,7 +26,7 @@
     </SearchButtonControl>
 </DataGridControl>
 
-<ModalControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" HeaderText="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "New" : "Edit")">
+<ModalControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" HeaderText="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "신규" : "수정")">
     <Control>
         <EditForm class="container" Model="@this.SelectItem" OnValidSubmit="this.Save">
             <DataAnnotationsValidator />
@@ -34,34 +34,34 @@
             <FieldControl Label="Class ID" Value="this.SelectItem.CLASS_ID"></FieldControl>
 
             <div class="row py-2">
-                <FieldControl Label="Class name">
+                <FieldControl Label="클래스명">
                     <Control>
-                        <InputText id="classname" class="form-control" placeholder="Class name" @bind-Value="this.SelectItem.CLASS_NAME" />
+                        <InputText id="classname" class="form-control" placeholder="@Localization["클래스명"]" @bind-Value="this.SelectItem.CLASS_NAME" />
                         <ValidationMessage For="@(()=>this.SelectItem.CLASS_NAME)" />
                     </Control>
                 </FieldControl>
-                <FieldControl Label="Key name">
+                <FieldControl Label="키 이름">
                     <Control>
-                        <InputText id="keyname" class="form-control" placeholder="Key name" @bind-Value="this.SelectItem.KEY_VALUE" />
+                        <InputText id="keyname" class="form-control" placeholder="@Localization["키 이름"]" @bind-Value="this.SelectItem.KEY_VALUE" />
                         <ValidationMessage For="@(()=>this.SelectItem.KEY_VALUE)" />
                     </Control>
                 </FieldControl>
             </div>
             <div class="row py-2">
-                <FieldControl Label="Inactive" CssClassControl="row">
+                <FieldControl Label="비활성" CssClassControl="row">
                     <Control>
                         <div class="py-1 col-lg-6">
-                            <InputDate id="inactivedate" class="form-control" placeholder="Inactive Date" Type="InputDateType.Date" @bind-Value="this.SelectItem.INACTIVE_DATE" @bind-Value:format="yyyy-MM-dd" />
+                            <InputDate id="inactivedate" class="form-control" placeholder="@Localization["비활성 날짜"]" Type="InputDateType.Date" @bind-Value="this.SelectItem.INACTIVE_DATE" @bind-Value:format="yyyy-MM-dd" />
                         </div>
                         <div class="py-1 col-lg-6">
-                            <InputDate id="inactivetime" class="form-control" placeholder="Inactive Time" Type="InputDateType.Time" @bind-Value="this.SelectItem.INACTIVE_DATE" @bind-Value:format="HH:mm" />
+                            <InputDate id="inactivetime" class="form-control" placeholder="@Localization["비활성 시간"]" Type="InputDateType.Time" @bind-Value="this.SelectItem.INACTIVE_DATE" @bind-Value:format="HH:mm" />
                         </div>
                         <ValidationMessage For="@(()=>this.SelectItem.INACTIVE_DATE)" />
                     </Control>
                 </FieldControl>
             </div>
             <CardControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))"
-                         CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "card border-primary mb-2" : "card mb-2")" HeaderText="Text value"
+                         CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "card border-primary mb-2" : "card mb-2")" HeaderText="텍스트 값"
                          Minimize="(() => {this.CardWindowStatusText = CardWindowStatus.Minimize; return;} )" Maximize="(() => {this.CardWindowStatusText = CardWindowStatus.Maximize; return;} )" CardWindowStatus="this.CardWindowStatusText">
                 <Text>
                     <div class="row">
@@ -87,7 +87,7 @@
                 </Text>
             </CardControl>
             <CardControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))"
-                         CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "card border-primary mb-2" : "card mb-2")" HeaderText="Int value"
+                         CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "card border-primary mb-2" : "card mb-2")" HeaderText="정수 값"
                          Minimize="(() => {this.CardWindowStatusInt = CardWindowStatus.Minimize; return;} )" Maximize="(() => {this.CardWindowStatusInt = CardWindowStatus.Maximize; return;} )" CardWindowStatus="this.CardWindowStatusInt">
                 <Text>
                     <div class="row">
@@ -104,7 +104,7 @@
                 </Text>
             </CardControl>
             <CardControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))"
-                         CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "card border-primary mb-2" : "card mb-2")" HeaderText="Number value"
+                         CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "card border-primary mb-2" : "card mb-2")" HeaderText="숫자 값"
                          Minimize="(() => {this.CardWindowStatusNumber = CardWindowStatus.Minimize; return;} )" Maximize="(() => {this.CardWindowStatusNumber = CardWindowStatus.Maximize; return;} )" CardWindowStatus="this.CardWindowStatusNumber">
                 <Text>
                     <div class="row">
@@ -121,7 +121,7 @@
                 </Text>
             </CardControl>
             <CardControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))"
-                         CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "card border-primary mb-2" : "card mb-2")" HeaderText="Datetime value"
+                         CssClass="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "card border-primary mb-2" : "card mb-2")" HeaderText="날짜/시간 값"
                          Minimize="(() => {this.CardWindowStatusDatetime = CardWindowStatus.Minimize; return;} )" Maximize="(() => {this.CardWindowStatusDatetime = CardWindowStatus.Maximize;return;} )" CardWindowStatus="this.CardWindowStatusDatetime">
                 <Text>
                     <div class="row">
